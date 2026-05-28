@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { inject } from '@angular/core';
+import { Auth } from '../../auth/auth';
 
 @Component({
   selector: 'app-login-page',
@@ -11,13 +13,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class LoginPageComponent {
 
+  authService = inject(Auth);
+
   form = new FormGroup({  
-    username: new FormControl(''),
-    password: new FormControl('')
+    username: new FormControl<string | null>(null, Validators.required),
+    password: new FormControl<string | null>(null, Validators.required)
   });
 
   onSubmit() {
-    console.log(this.form.value);
+    console.log(this.form.value)
+
+    if (this.form.valid) {
+      //@ts-ignore
+      this.authService.login(this.form.value).subscribe (res => {
+         
+          console.log(res)
+    })
   }
+}
 }
 
