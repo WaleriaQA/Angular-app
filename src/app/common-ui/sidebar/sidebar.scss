@@ -1,7 +1,7 @@
 :host {
     display: block;
     padding: 20px 12px;
-    
+    position: relative;
 }
 
 .main-menu-list {
@@ -16,6 +16,7 @@
     border: none;
     background: none;
     color: var(--light-color);
+    text-decoration: none;
     display: grid;
     grid-template-columns: 16px 1fr max-content;
     grid-gap: 12px;
@@ -42,5 +43,48 @@
 .menu-item svg {
     width: 16px;
     height: 16px;
-    
+}
+
+.to-subscribers {
+    display: flex;
+    align-items: center;
+    gap: 10px;    
+}
+
+.to-subscribers-link {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.to-subscribers-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.sidebar__footer {
+    background: var(--dark-hover-colorcolor);
+    border-radius: 2px;
+    padding: 4px 16px;
+    display: grid;
+    grid-template-columns: 32px 1fr 16px;
+    grid-gap: 12px;
+    align-items: center;
+
+    img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+    }
+
+    .username-text {
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+}
+
+.settings-btn {
+    svg {
+    width: 13px;
+    height: 13px;
+    }
 }
