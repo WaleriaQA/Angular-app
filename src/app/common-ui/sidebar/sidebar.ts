@@ -28,7 +28,7 @@ export class Sidebar {
   menuItems = [{
     label: 'Home',
     icon: 'home',
-    link: '',
+    link: 'profile/me',
   },
   {
     label: 'Chats',
