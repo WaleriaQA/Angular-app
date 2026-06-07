@@ -10,12 +10,13 @@ import { SvgIcon } from "../../common-ui/svg-icon/svg-icon";
 import { RouterLink } from '@angular/router';
 import { Profile } from '../../data/interfaces/profile.interface';
 import { ImgUrlPipe } from '../../helpers/pipes/img-url-pipe';
+import { PostFeed } from './post-feed/post-feed';
 
 
 @Component({
   selector: 'app-profile-page',
   standalone: true,
-  imports: [ProfileHeader, AsyncPipe, SvgIcon, RouterLink, NgClass, ImgUrlPipe],
+  imports: [ProfileHeader, AsyncPipe, SvgIcon, RouterLink, NgClass, ImgUrlPipe, PostFeed],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
 })
