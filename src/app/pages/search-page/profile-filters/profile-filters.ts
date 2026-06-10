@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { switchMap, debounceTime } from 'rxjs';
+import { switchMap, debounceTime, startWith } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileService } from '../../../data/services/profile.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-profile-filters',
@@ -24,10 +25,12 @@ export class ProfileFilters {
   constructor() {
 this.searchForm.valueChanges
 .pipe(
+  startWith({}),
   debounceTime(300),
   switchMap(formValue => {
 return this.profileService.filterProfiles(formValue as Record<string, any>)
-  })
+  }),
+  takeUntilDestroyed()
 )
 .subscribe()
   }
