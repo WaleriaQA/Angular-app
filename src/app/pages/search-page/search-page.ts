@@ -4,11 +4,12 @@ import { ChangeDetectorRef } from '@angular/core';
 import { ProfileService } from '../../data/services/profile.service';
 import { Profile } from '../../data/interfaces/profile.interface';
 import { ProfileCard } from '../../common-ui/profile-card/profile-card';
+import { ProfileFilters } from './profile-filters/profile-filters';
 
 @Component({
   selector: 'app-search-page',
   standalone: true,
-  imports: [ProfileCard],
+  imports: [ProfileCard, ProfileFilters],
   templateUrl: './search-page.html',
   styleUrl: './search-page.scss',
 })

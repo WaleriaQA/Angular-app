@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SvgIcon } from "../svg-icon/svg-icon";
 import { NgFor, AsyncPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SubscriberCard } from "./subscriber-card/subscriber-card";
 import { ProfileService } from '../../data/services/profile.service';
 import { inject } from '@angular/core';
@@ -15,7 +15,7 @@ import { ImgUrlPipe } from '../../helpers/pipes/img-url-pipe';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [SvgIcon, NgFor, RouterLink, SubscriberCard, AsyncPipe, ImgUrlPipe],
+  imports: [SvgIcon, NgFor, RouterLink, SubscriberCard, AsyncPipe, ImgUrlPipe, RouterLinkActive],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
