@@ -12,8 +12,7 @@ export class AuthService {
   http: HttpClient = inject(HttpClient);
   router = inject(Router);
   cookieService = inject(CookieService);
-  baseApiUrl: string =  'https://icherniakov.ru/yt-course/auth/'
-
+  baseApiUrl: string = 'https://icherniakov.ru/yt-course/auth/';
 
   token: string | null = null;
   refreshToken: string | null = null;
@@ -30,27 +29,25 @@ export class AuthService {
     const fd = new FormData();
     fd.append('username', payload.username);
     fd.append('password', payload.password);
-    return this.http.post<TokenResponse>(`${this.baseApiUrl}token`, fd,
-    ).pipe(
-      tap(val => this.saveTokens(val))
-    )
-      }
+    return this.http
+      .post<TokenResponse>(`${this.baseApiUrl}token`, fd)
+      .pipe(tap((val) => this.saveTokens(val)));
+  }
 
   refreshAuthToken() {
-    return this.http.post<TokenResponse>(
-      `${this.baseApiUrl}refresh`, 
-      {
-      refresh_token: this.refreshToken,
-    }
-  ).pipe(
-      tap(val => this.saveTokens(val)),
-      catchError(err => {
-        this.logout();
-        return throwError(err);
+    return this.http
+      .post<TokenResponse>(`${this.baseApiUrl}refresh`, {
+        refresh_token: this.refreshToken,
       })
-    )
-}
-logout() {    
+      .pipe(
+        tap((val) => this.saveTokens(val)),
+        catchError((err) => {
+          this.logout();
+          return throwError(err);
+        }),
+      );
+  }
+  logout() {
     this.cookieService.deleteAll();
     this.token = null;
     this.refreshToken = null;
@@ -65,4 +62,3 @@ logout() {
     this.cookieService.set('refreshToken', this.refreshToken);
   }
 }
-

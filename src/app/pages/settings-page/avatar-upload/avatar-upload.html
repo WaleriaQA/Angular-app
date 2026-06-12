@@ -1,23 +1,16 @@
-<img [src]="preview()" class="avatar">
+<img [src]="preview()" class="avatar" />
 
-<div
-dnd
-  class="dropzone"
-  (keyup.enter)="fileDrop.click()"
-  (fileDropped)="onFileDropped($event)"
- 
->
+<div dnd class="dropzone" (keyup.enter)="fileDrop.click()" (fileDropped)="onFileDropped($event)">
   <div class="dropzone-content">
     <svg icon="upload"></svg>
     <span class="medium-text">Drag or upload an image</span>
-  
-</div>
+  </div>
 
-<input
-tabindex="-1"
-class="avatar-input"
-  type="file"
-  #fileDrop
-  (change)="fileBrowserHandler($event)"
->
+  <input
+    tabindex="-1"
+    class="avatar-input"
+    type="file"
+    #fileDrop
+    (change)="fileBrowserHandler($event)"
+  />
 </div>

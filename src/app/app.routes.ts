@@ -7,16 +7,17 @@ import { canActivateAuth } from './auth/access.guard';
 import { SettingsPageComponent } from './pages/settings-page/settings-page';
 
 export const routes: Routes = [
-    {path: '', component: Layout, children: [
-        {path: '', redirectTo: 'profile/me', pathMatch: 'full'},
-        {path: 'profile/:id', component: ProfilePageComponent},
-        {path: 'settings', component: SettingsPageComponent},
-        {path: 'search', component: SearchPageComponent},
+  {
+    path: '',
+    component: Layout,
+    children: [
+      { path: '', redirectTo: 'profile/me', pathMatch: 'full' },
+      { path: 'profile/:id', component: ProfilePageComponent },
+      { path: 'settings', component: SettingsPageComponent },
+      { path: 'search', component: SearchPageComponent },
     ],
-     canActivate: [canActivateAuth]
-},
-    
-    
-    {path: 'login', component: LoginPageComponent}
-];
+    canActivate: [canActivateAuth],
+  },
 
+  { path: 'login', component: LoginPageComponent },
+];

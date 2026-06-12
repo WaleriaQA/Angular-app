@@ -19,19 +19,19 @@ export class ProfileFilters {
   searchForm = this.fb.group({
     firstName: [''],
     lastName: [''],
-    stack: ['']
-  })
+    stack: [''],
+  });
 
   constructor() {
-this.searchForm.valueChanges
-.pipe(
-  startWith({}),
-  debounceTime(300),
-  switchMap(formValue => {
-return this.profileService.filterProfiles(formValue as Record<string, any>)
-  }),
-  takeUntilDestroyed()
-)
-.subscribe()
+    this.searchForm.valueChanges
+      .pipe(
+        startWith({}),
+        debounceTime(300),
+        switchMap((formValue) => {
+          return this.profileService.filterProfiles(formValue as Record<string, any>);
+        }),
+        takeUntilDestroyed(),
+      )
+      .subscribe();
   }
 }

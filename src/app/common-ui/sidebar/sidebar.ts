@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { SvgIcon } from "../svg-icon/svg-icon";
+import { SvgIcon } from '../svg-icon/svg-icon';
 import { NgFor, AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { SubscriberCard } from "./subscriber-card/subscriber-card";
+import { SubscriberCard } from './subscriber-card/subscriber-card';
 import { ProfileService } from '../../data/services/profile.service';
 import { inject } from '@angular/core';
 import { Profile } from '../../data/interfaces/profile.interface';
@@ -20,31 +20,29 @@ import { ImgUrlPipe } from '../../helpers/pipes/img-url-pipe';
   styleUrl: './sidebar.scss',
 })
 export class Sidebar {
-
   profileService: ProfileService = inject(ProfileService);
 
   subscribers$: Observable<Profile[]> = this.profileService.getSubscribersShortList();
   me = this.profileService.me;
-  menuItems = [{
-    label: 'Home',
-    icon: 'home',
-    link: 'profile/me',
-  },
-  {
-    label: 'Chats',
-    icon: 'chats',
-    link: 'chats',
-  },
-  {
-    label: 'Search',
-    icon: 'search',
-    link: 'search',
-  },
+  menuItems = [
+    {
+      label: 'Home',
+      icon: 'home',
+      link: 'profile/me',
+    },
+    {
+      label: 'Chats',
+      icon: 'chats',
+      link: 'chats',
+    },
+    {
+      label: 'Search',
+      icon: 'search',
+      link: 'search',
+    },
+  ];
 
-];
-
-ngOnInit() {
-  firstValueFrom(this.profileService.getMe())
+  ngOnInit() {
+    firstValueFrom(this.profileService.getMe());
+  }
 }
-}
-

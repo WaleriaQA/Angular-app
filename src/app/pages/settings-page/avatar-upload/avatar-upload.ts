@@ -3,7 +3,6 @@ import { SvgIcon } from '../../../common-ui/svg-icon/svg-icon';
 import { Dnd } from '../../../common-ui/directives/dnd';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-avatar-upload',
   standalone: true,
@@ -12,30 +11,27 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './avatar-upload.scss',
 })
 export class AvatarUpload {
+  preview = signal<string>('/assets/images/avatar-default.png');
 
-  preview = signal<string>('/assets/images/avatar-default.png')
-
-  avatar: File | null = null
+  avatar: File | null = null;
 
   fileBrowserHandler(event: Event) {
-   const file = (event.target as HTMLInputElement)?.files?.[0] 
-   this.processFile(file)
-   
+    const file = (event.target as HTMLInputElement)?.files?.[0];
+    this.processFile(file);
   }
   onFileDropped(file: File) {
-this.processFile(file)
+    this.processFile(file);
   }
 
   processFile(file: File | null | undefined) {
-    if (!file || !file.type.match('image')) return
+    if (!file || !file.type.match('image')) return;
 
-   const reader :FileReader = new FileReader()
-   reader.onload = event => {
-this.preview.set(event.target?.result?.toString() ?? '')
-   }
+    const reader: FileReader = new FileReader();
+    reader.onload = (event) => {
+      this.preview.set(event.target?.result?.toString() ?? '');
+    };
 
-   reader.readAsDataURL(file)
-   this.avatar = file
+    reader.readAsDataURL(file);
+    this.avatar = file;
   }
-
 }
